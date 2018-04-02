@@ -1,0 +1,18 @@
+{{navigation-wrapper}}
+{{outlet}}
+
+
+<h3><button {{action "toggleBody"}}>{{title}}</button></h3>
+{{#if isShowingBody}}
+  <p>
+    <article class="university-listing">
+      <h3>{{model.title}}</h3>
+      <div class="detail-location">
+        <span>Location:</span> {{model.city}}
+      </div>
+      <div class="detail-description">
+        <span>Description:</span> {{model.description}}
+      </div>
+    </article>
+</p>
+{{/if}}

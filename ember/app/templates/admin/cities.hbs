@@ -1,0 +1,8 @@
+{{admin/admin-navigation}}
+<h2> Admin cities </h2>
+
+{{#each model.cities as |city|}}
+  {{#location-view title = city.name description=city.about image = city.imageUrl}}{{/location-view}}
+{{/each}}
+
+<button>Add new city</button>

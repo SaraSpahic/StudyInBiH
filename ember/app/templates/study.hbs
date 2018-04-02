@@ -1,0 +1,44 @@
+{{outlet}}
+{{navigation-wrapper}}
+<div class = "cover-photo">
+
+<div class = "cover-title program-finder-container">
+<div class = "title">Find your program</div>
+
+<div id = "program-finder">
+  <form class="program-form">
+               <select id="select-level" {{action 'setLevel' on='change' }}>
+                 <option value=1>Bachelor</option>
+                 <option value=2>Master</option>
+                 <option value=3>PhD</option>
+                <option value=3>All levels</option>
+               </select>
+               <select id="select-level" {{action 'setLanguage' on='change' }}>
+                 <option value=1>English</option>
+                 <option value=2>Bosnian</option>
+                <option value=3>All languages</option>
+               </select>
+               <input type = "text" name = "study-field" placeholder="Study field"/>
+               <button type="submit" class="program-form-button">Find Program</button>
+             </form>
+
+</div>
+</div>
+
+</div>
+
+<div class = "popular-locations study-subfield">
+
+<div class = "study-subtitle">Popular locations</div>
+
+</div>
+
+<div class = "popular-universities study-subfield">
+
+<div class = "study-subtitle">Popular universities</div>
+{{#each model.universities.model as |university|}}
+{{#link-to "university" university_id}}<h2>{{university.name}}</h2>{{/link-to}}
+
+{{/each}}
+
+</div>

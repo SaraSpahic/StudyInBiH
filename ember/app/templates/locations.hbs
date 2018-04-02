@@ -1,0 +1,13 @@
+{{outlet}}
+{{navigation-wrapper}}
+<div class = "page-main">
+
+<div class = "location-title">
+  Explore cities in Bosnia and Hercegovina
+</div>
+
+{{#each model.locations as |location|}}
+  {{#location-view title = location.name description=location.about image = location.imageUrl}}{{/location-view}}
+{{/each}}
+
+</div>

@@ -1,0 +1,7 @@
+{
+  "name": "studyinbih",
+  "dependencies": {
+    "ember-addons.bs_for_ember": "~0.7.0",
+     "font-awesome": "~4.5.0"
+  }
+}

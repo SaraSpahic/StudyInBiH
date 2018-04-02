@@ -1,0 +1,32 @@
+{{outlet}}
+{{navigation-wrapper}}
+<div class = "cover-photo">
+
+<img src='/assets/images/cover.jpg'/>
+
+<div class="cover-title">
+<p>Study in Bosnia and Herzegovina</p>
+</div>
+</div>
+
+
+<div class = "row">
+  {{#link-to "blog"}}
+  <div class = "col-md-3 box-link-blue">
+    {{#box-link title = "Why Bosnia and Herzegovina?"}} Discover top reasons to choose Bosnia and Herzegovina for your future studies.{{/box-link}}
+  </div>
+  {{/link-to}}
+  {{#link-to "locations"}}
+  <div class = "col-md-3 box-link-light">
+        {{#box-link title = "Where to study?"}} Choose your city and learn all about the universities in Bosnia and Herzegovina.{{/box-link}}
+  </div>
+  {{/link-to}}
+  {{#link-to "study"}}
+  <div class = "col-md-3 box-link-green">
+      {{#box-link title = "What to study?"}} Have a specific study field in mind? Learn more about the programs offered in Bosnia and Herzegovina. {{/box-link}}
+  </div>
+  {{/link-to}}
+  <div class = "col-md-3 box-link-yellow">
+      {{#box-link title = "How to apply?"}} Learn more about all the application requirements.{{/box-link}}
+  </div>
+</div>

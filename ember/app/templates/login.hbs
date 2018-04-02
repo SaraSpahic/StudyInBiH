@@ -1,0 +1,17 @@
+{{navigation-wrapper}}
+<div class = "login-container">
+<form class="login-register-form" {{action 'authenticate' on='submit'}}>
+           <div class="row">
+             <div class="col-xs-12 col-sm-6">
+               <h1 class="form-title">Login</h1>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-xs-12">
+               {{input id='username' class='form-input' type='username' placeholder='Username' value=username}}
+               {{input id='password' class='form-input' type='password' placeholder='Password' value=password}}
+               <button class="form-button" type="submit">Login</button>
+             </div>
+           </div>
+         </form>
+</div>
