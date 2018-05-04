@@ -7,7 +7,11 @@
 </div>
 
 {{#each model.locations as |location|}}
-  {{#location-view title = location.name description=location.about image = location.imageUrl}}{{/location-view}}
+{{log 'id is:' location.id}}
+{{#link-to 'city' location.id}}
+{{#location-view title = location.name image = location.imageUrl description = location.description}}{{/location-view}}
+{{/link-to}}
+
 {{/each}}
 
 </div>

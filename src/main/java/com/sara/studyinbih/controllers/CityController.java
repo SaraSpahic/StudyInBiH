@@ -75,4 +75,26 @@ public class CityController extends BaseController {
 	public ResponseEntity getAllCities() {
 		return wrapForPublic(() -> this.service.getAllCities());
 	}
+
+	/**
+	 * Gets all universities in a city.
+	 *
+	 * @return the all universities
+	 */
+	@RequestMapping(value = "/api/v1/getUniversities/{cityId}", method = RequestMethod.GET, produces="application/json")
+	public ResponseEntity getAllUniversities(@PathVariable final String cityId) {
+		return wrapForPublic(() -> this.service.getAllUniversities(UUID.fromString(cityId)));
+	}
+
+
+	/**
+	 * Gets all cities.
+	 *
+	 * @return the all cities
+	 */
+	@RequestMapping(value = "/api/v1/getUniversities", method = RequestMethod.GET, produces="application/json")
+	public ResponseEntity getAllUniversities() {
+		return wrapForPublic(() -> this.service.getAllCities());
+	}
+
 }

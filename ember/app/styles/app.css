@@ -4,6 +4,29 @@ body {
   background-color: #f2f9ff;
 }
 
+.container-general {
+  width: 80%;
+  position: relative;
+  display: block;
+  margin:auto;
+  box-sizing: border-box;
+  border-radius: 2px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.display-form {
+  position: relative;
+  z-index: 20;
+  box-sizing: border-box;
+  padding: 30px 40px 60px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: solid 1px #e6e8eb;
+  margin-bottom: 20px;
+}
+
 
 
 /*-----------------------------------------------------------------------------*\
@@ -141,6 +164,25 @@ padding-top: 10%;
      background-size: cover;
      object-fit: contain;
 }
+
+
+.top-photo {
+  height: 500px;
+
+}
+
+.top-photo > img{
+  position: absolute;
+  width:100%;
+  object-fit: cover;
+  overflow: hidden;
+  height: 500px;
+}
+
+
+/*-----------------------------------------------------------------------------*\
+      UNIVERSITY
+\*-----------------------------------------------------------------------------*/
 
 
 
@@ -390,6 +432,12 @@ padding-top: 10%;
       ADMIN
 \*-----------------------------------------------------------------------------*/
 
+.delete-icon {
+  position: absolute;
+  right: 25px;
+  top:25px;
+}
+
 
 /*-----------------------------------------------------------------------------*\
   LOGIN
@@ -502,6 +550,29 @@ padding-top: 10%;
       -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset;
       -webkit-text-fill-color: #333;
   }
+
+
+
+    /*-----------------------------------------------------------------------------*\
+      CITY
+    \*-----------------------------------------------------------------------------*/
+
+  .city-form {
+    padding: 50px;
+  }
+
+  .form-input-long {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 2px;
+    border: solid 1px #e1e1e1;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    resize: vertical;
+}
+
 
   /*-----------------------------------------------------------------------------*\
     INDEX

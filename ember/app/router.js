@@ -7,7 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('university');
+  this.route('university',{ path: 'university/:university_id' });
   this.route('locations');
   this.route('study');
   this.route('blog');
@@ -18,7 +18,11 @@ Router.map(function() {
     this.route('programs');
     this.route('fields');
     this.route('blog');
+    this.route('city-edit',  { path: 'city-edit/:city_id' });
+    this.route('city-add');
+    this.route('university-edit');
   });
+  this.route('city',{ path: 'city/:city_id' });
 });
 
 export default Router;

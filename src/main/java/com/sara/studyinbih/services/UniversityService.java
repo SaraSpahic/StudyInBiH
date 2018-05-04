@@ -277,10 +277,10 @@ public class UniversityService extends BaseService {
 	 */
 	public String updatePicture(final ImageUploadForm imageUploadForm) throws Exception {
 		University university = (University) getSession().createCriteria(University.class)
-				.add(Restrictions.eq("id", imageUploadForm.getUniversityId()))
+				.add(Restrictions.eq("id", imageUploadForm.getEntityId()))
 				.uniqueResult();
 
-		String newImagePath = BASE_PATH + imageUploadForm.getUniversityId() + "-";
+		String newImagePath = BASE_PATH + imageUploadForm.getEntityId() + "-";
 		if (imageUploadForm.getImageType().equals("profile")) {
 			university.setProfileImagePath(newImagePath);
 			newImagePath+=imageUploadForm.getImageType() + "." + imageUploadForm.getExtension();
@@ -291,7 +291,7 @@ public class UniversityService extends BaseService {
 		else {
 			newImagePath+=imageUploadForm.getTimestamp()+ "." + imageUploadForm.getExtension();;
 			UniversityPhoto newPhoto = new UniversityPhoto();
-			newPhoto.setUniversityId(imageUploadForm.getUniversityId());
+			newPhoto.setUniversityId(imageUploadForm.getEntityId());
 			newPhoto.setPath(newImagePath);
 			getSession().persist(newPhoto);
 

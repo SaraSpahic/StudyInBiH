@@ -10,7 +10,7 @@ import java.util.UUID;
  */
 public class ImageUploadForm extends BaseModel {
 
-    private UUID universityId;
+    private UUID entityId;
     private String imageType;
     private String extension;
     private String timestamp;
@@ -25,14 +25,14 @@ public class ImageUploadForm extends BaseModel {
      *
      * @return the university id
      */
-    public UUID getUniversityId() { return universityId; }
+    public UUID getEntityId() { return entityId; }
 
     /**
      * Sets university id.
      *
-     * @param universityId the university id
+     * @param entityId the university id
      */
-    public void setUniversityId(UUID universityId) { this.universityId = universityId; }
+    public void setEntityId(UUID entityId) { this.entityId = entityId; }
 
     /**
      * Gets image type.

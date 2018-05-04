@@ -1,18 +1,36 @@
-{{navigation-wrapper}}
 {{outlet}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{navigation-wrapper}}
+<div class = "page-main">
 
+<div class = "container-general">
+  <div class = "top-photo">
+    <img src= "{{model.university.coverImagePath}}">
+  </div>
 
-<h3><button {{action "toggleBody"}}>{{title}}</button></h3>
-{{#if isShowingBody}}
-  <p>
-    <article class="university-listing">
-      <h3>{{model.title}}</h3>
-      <div class="detail-location">
-        <span>Location:</span> {{model.city}}
-      </div>
-      <div class="detail-description">
-        <span>Description:</span> {{model.description}}
-      </div>
-    </article>
-</p>
-{{/if}}
+<div class="container">
+<h1>{{model.city.name}}</h1>
+  <ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#about">About</a></li>
+    <li><a data-toggle="tab" href="#programs">Programs</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="about" class="tab-pane fade in active">
+      <h3>Learn more about {{model.university.name}}</h3>
+      <img src =  "{{model.university.profileImagePath}}">
+      <p>{{model.university.description}}</p>
+    </div>
+    <div id="programs" class="tab-pane fade">
+      <h3>Study programs offered at {{model.university.name}}</h3>
+      <p>List of programs</p>
+      <ul>
+      
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>

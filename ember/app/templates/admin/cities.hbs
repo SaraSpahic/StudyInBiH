@@ -2,7 +2,10 @@
 <h2> Admin cities </h2>
 
 {{#each model.cities as |city|}}
-  {{#location-view title = city.name description=city.about image = city.imageUrl}}{{/location-view}}
+  {{#location-view title = city.name description=city.about image = city.imageUrl}}
+  {{log 'id is:' city.id}}
+  {{#link-to 'admin.city-edit' city.id}}<button>Edit</button>{{/link-to}}
+  {{/location-view}}
 {{/each}}
 
-<button>Add new city</button>
+{{#link-to 'admin.city-add'}}<button>Add new city</button>{{/link-to}}

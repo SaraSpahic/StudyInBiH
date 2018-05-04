@@ -21,7 +21,7 @@ public class City extends BaseModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "about")
+    @Column(name = "about", columnDefinition="text")
     private String about;
 
     @Column(name = "imageUrl")

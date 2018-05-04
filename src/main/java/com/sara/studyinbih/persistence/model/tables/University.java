@@ -39,7 +39,7 @@ public class University extends BaseModel {
 	@Column(name = "profile_image_path")
 	private String profileImagePath;
 
-	@Column(name = "description")
+	@Column(name = "description", columnDefinition="text")
 	private String description;
 
 	@Column(name = "email")
