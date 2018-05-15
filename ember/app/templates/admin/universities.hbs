@@ -1,1 +1,22 @@
-{{outlet}}
+{{admin/admin-navigation}}
+<h2> Manage Universities </h2>
+
+{{#each model.universities as |university|}}
+<div class = "container-general">
+<div class = "row">
+<div class = "col-md-3">
+<img class = "photo-tile" src = "{{university.profileImagePath}}"/>
+</div>
+<div class = "col-md-9">
+<h2> {{university.name}}</h2>
+<h3> {{university.city.name}}</h3>
+
+{{#link-to 'admin.university-edit' university.id}}<button>Edit</button>{{/link-to}}
+
+</div>
+
+</div>
+</div>
+{{/each}}
+
+{{#link-to 'admin.university-add'}}<button>Add new university</button>{{/link-to}}

@@ -20,7 +20,9 @@ Router.map(function() {
     this.route('blog');
     this.route('city-edit',  { path: 'city-edit/:city_id' });
     this.route('city-add');
-    this.route('university-edit');
+    this.route('university-edit', { path: 'university-edit/:university_id' });
+    this.route('university-add');
+    this.route('program-add',  { path: 'program-add/:university_id' });
   });
   this.route('city',{ path: 'city/:city_id' });
 });

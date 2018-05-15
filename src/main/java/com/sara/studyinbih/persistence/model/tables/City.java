@@ -94,7 +94,7 @@ public class City extends BaseModel {
      * @param imageUrl the imageUrl
      */
     public void setImageUrl(String imageUrl) {
-        this.about = about;
+        this.imageUrl = imageUrl;
     }
 
     /**

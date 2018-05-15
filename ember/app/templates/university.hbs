@@ -10,10 +10,13 @@
   </div>
 
 <div class="container">
-<h1>{{model.city.name}}</h1>
+<h1>{{model.university.name}}</h1>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#about">About</a></li>
     <li><a data-toggle="tab" href="#programs">Programs</a></li>
+    <li><a data-toggle="tab" href="#gallery">Gallery</a></li>
+    <li><a data-toggle="tab" href="#reviews">Reviews</a></li>
+    <li><a data-toggle="tab" href="#contact">Contact</a></li>
   </ul>
 
   <div class="tab-content">
@@ -26,8 +29,20 @@
       <h3>Study programs offered at {{model.university.name}}</h3>
       <p>List of programs</p>
       <ul>
-      
+
       </ul>
+    </div>
+    <div id="gallery" class="tab-pane fade">
+
+    </div>
+    <div id="reviews" class="tab-pane fade">
+
+    </div>
+    <div id="contact" class="tab-pane fade">
+      Address: {{model.university.address}} <br/>
+      Phone: {{model.university.phone}}  <br/>
+      Email: {{model.university.email}}  <br/>
+
     </div>
   </div>
 </div>

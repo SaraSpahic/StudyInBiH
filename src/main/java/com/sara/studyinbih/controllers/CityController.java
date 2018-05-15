@@ -83,7 +83,7 @@ public class CityController extends BaseController {
 	 */
 	@RequestMapping(value = "/api/v1/getUniversities/{cityId}", method = RequestMethod.GET, produces="application/json")
 	public ResponseEntity getAllUniversities(@PathVariable final String cityId) {
-		return wrapForPublic(() -> this.service.getAllUniversities(UUID.fromString(cityId)));
+		return wrapForPublic(() -> this.service.getUniversities(UUID.fromString(cityId)));
 	}
 
 

@@ -80,7 +80,7 @@ public class CityService extends BaseService {
         return true;
     }
 
-    public List<University> getAllUniversities(UUID cityId) {
+    public List<University> getUniversities(UUID cityId) {
         Criteria criteria = getSession().createCriteria(University.class);
         criteria.add(Restrictions.eq("city.id", cityId));
 

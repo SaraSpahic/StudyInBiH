@@ -12,6 +12,7 @@ export default Ember.Route.extend({
   model(params) {
     return Ember.RSVP.hash({
       university: this.get('ajax').request('/api/v1/getUniversity/' + params.university_id),
+      programs: this.get('ajax').request('/api/v1/getStudyPrograms/' + params.university_id),
     });
   },
 });
