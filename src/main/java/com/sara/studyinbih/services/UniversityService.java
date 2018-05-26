@@ -315,4 +315,12 @@ public class UniversityService extends BaseService {
     }
 
 
+    public University getUniversityByProgram(final UUID id) {
+        StudyProgram studyProgram = (StudyProgram) getSession().createCriteria(StudyProgram.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+        UUID universityId = studyProgram.getUniversityId();
+        return getUniversityWithId(universityId);
+
+    }
 }

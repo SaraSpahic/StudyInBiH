@@ -3,10 +3,12 @@ package com.sara.studyinbih.services;
 import com.sara.studyinbih.persistence.model.tables.StudyProgram;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class StudyProgramService extends BaseService {
 
 

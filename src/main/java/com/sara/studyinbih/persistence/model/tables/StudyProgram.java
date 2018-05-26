@@ -24,9 +24,6 @@ public class StudyProgram extends BaseModel {
     @Column(name = "university_id")
     private UUID universityId;
 
-    @Column(name = "number_of_studyPrograms")
-    private Integer numberOfStudyPrograms;
-
     @Column(name = "name")
     private String name;
 
@@ -41,6 +38,9 @@ public class StudyProgram extends BaseModel {
 
     @Column(name = "ECTS")
     private Integer ects;
+
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
             fetch = FetchType.EAGER)
@@ -91,23 +91,6 @@ public class StudyProgram extends BaseModel {
         this.universityId = universityId;
     }
 
-    /**
-     * Gets number of studyPrograms.
-     *
-     * @return the number of studyPrograms
-     */
-    public Integer getNumberOfStudyPrograms() {
-        return numberOfStudyPrograms;
-    }
-
-    /**
-     * Sets number of studyPrograms.
-     *
-     * @param numberOfStudyPrograms the number of studyPrograms
-     */
-    public void setNumberOfStudyPrograms(Integer numberOfStudyPrograms) {
-        this.numberOfStudyPrograms = numberOfStudyPrograms;
-    }
 
     /**
      * Gets studyFields.
@@ -219,5 +202,13 @@ public class StudyProgram extends BaseModel {
      */
     public void setEcts(Integer ects) {
         this.ects = ects;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

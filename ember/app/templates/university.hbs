@@ -29,7 +29,11 @@
       <h3>Study programs offered at {{model.university.name}}</h3>
       <p>List of programs</p>
       <ul>
-
+          {{#each model.programs as |program|}}
+          {{#link-to 'program' program.id}}
+            <li>{{program.name}}</li>
+            {{/link-to}}
+          {{/each}}
       </ul>
     </div>
     <div id="gallery" class="tab-pane fade">

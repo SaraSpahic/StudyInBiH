@@ -21,9 +21,6 @@ public class UniversityReview extends BaseModel {
 	@Column(name = "university_id")
 	private UUID universityId;
 
-	@Column(name = "user_id")
-	private UUID userId;
-
 	@Column(name = "rating")
 	private Integer rating;
 
@@ -45,7 +42,6 @@ public class UniversityReview extends BaseModel {
 	 */
 	public UniversityReview(UUID universityId, UUID userId, Integer rating, String review) {
 		this.universityId = universityId;
-		this.userId = userId;
 		this.rating = rating;
 		this.review = review;
 	}
@@ -79,25 +75,7 @@ public class UniversityReview extends BaseModel {
 	 */
 	public void setUniversityId(UUID universityId) { this.universityId = universityId; }
 
-	/**
-	 * Gets user id.
-	 *
-	 * @return the user id
-	 */
-	public UUID getUserId() { return userId; }
 
-	/**
-	 * Sets user id.
-	 *
-	 * @param userId the user id
-	 */
-	public void setUserId(UUID userId) { this.userId = userId; }
-
-	/**
-	 * Gets rating.
-	 *
-	 * @return the rating
-	 */
 	public Integer getRating() { return rating; }
 
 	/**

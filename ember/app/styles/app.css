@@ -214,8 +214,18 @@ padding-top: 10%;
 }
 
 
+/*-----------------------------------------------------------------------------*\
+      PROGRAM
+\*-----------------------------------------------------------------------------*/
 
+.program-header {
+  display: block;
+  width: 100%;
+  height: 150px;
+  background-color: #003399;
+  line-height: 1;
 
+}
 
 /*-----------------------------------------------------------------------------*\
       PROGRAM FINDER
@@ -604,3 +614,175 @@ padding: 30px;
 .nav-title {
 line-height: 150px;
 }
+
+/*-----------------------------------------------------------------------------*\
+  ADMIN FORM
+\*-----------------------------------------------------------------------------*/
+
+.admin-form {
+  position: relative;
+  z-index: 20;
+  box-sizing: border-box;
+  padding: 30px 40px 60px;
+  border-radius: 3px;
+  background-color: #ffffff;
+  border: solid 1px #e6e8eb;
+  margin-bottom: 20px;
+}
+
+  .admin-from-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e1e1e;
+    margin-top: 0;
+    margin-bottom: 30px;
+  }
+
+  .admin-form::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 19;
+    box-sizing: border-box;
+    width: -webkit-calc(100% - 10px);
+    width: -moz-calc(100% - 10px);
+    width: -o-calc(100% - 10px);
+    width: -ms-calc(100% - 10px);
+    width: calc(100% - 10px);
+    margin: 0 5px;
+    height: 6px;
+    bottom: -6px;
+    left: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #fbfbfb;
+    border: solid 1px #e6e8eb;
+  }
+
+  .admin-form-object-list {
+    margin: 0;
+    padding: 0;
+    display: block;
+    position: relative;
+    width: 100%;
+  }
+
+    .admin-form-object-list-item {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 47px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #e6e8eb;
+    }
+
+    .reservation-list-item {
+      padding: 13px 20px;
+    }
+
+    .admin-form-object-list-item:hover {
+      background-color: rgba(19, 29, 36, 0.05);
+    }
+
+    .admin-form-object-list-item::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      clear: both;
+    }
+
+    .admin-form-object-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .admin-form-object-list-item a {
+      color: #333;
+      text-decoration: none;
+    }
+
+      .admin-form-object-list-item h3 {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 21;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 15px 10px;
+        font-size: 16px;
+      }
+
+      .list-item-button {
+        position: relative;
+        z-index: 22;
+        visibility: hidden;
+        margin: 8px;
+        margin-right: 0;
+        float: right;
+        background-color: rgba(19, 29, 36, 0.4);
+      }
+
+      .admin-form-object-list-item:hover .list-item-button {
+        visibility: visible;
+      }
+
+      .admin-form-object-list-item .list-item-button,
+      .admin-from-new-button {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        border-radius: 3px;
+        color: #fff;
+        text-decoration: none;
+        padding: 5px 15px;
+      }
+
+      .admin-from-new-button {
+        outline: none;
+        border: none;
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        background-color: #99badd;
+        text-decoration: none;
+      }
+
+      .top-right-position {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+      }
+
+      .admin-from-new-button.grey {
+        background-color: rgba(19, 29, 36, 0.4);
+      }
+
+      .admin-from-new-button:hover {
+        text-decoration: none;
+        color: #fff;
+      }
+
+  .admin-form-image-profile {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }
+
+  .admin-form-image-cover {
+    position: relative;
+    height: 160px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }

@@ -23,8 +23,12 @@ Router.map(function() {
     this.route('university-edit', { path: 'university-edit/:university_id' });
     this.route('university-add');
     this.route('program-add',  { path: 'program-add/:university_id' });
+    this.route('fields-add');
+    this.route('program-edit', { path: 'program-edit/:program_id/:university_id' });
   });
   this.route('city',{ path: 'city/:city_id' });
+  this.route('program', { path: 'program/:program_id' });
+  this.route('universities');
 });
 
 export default Router;

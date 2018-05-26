@@ -1,1 +1,17 @@
-{{outlet}}
+{{admin/admin-navigation}}
+
+<div class = "container-general">
+<div class="admin-form">
+  <h1 class="admin-from-title">All Study Fields</h1>
+  {{#link-to 'admin.fields-add'}}<button type="button" class = "admin-from-new-button">Add new study Field</button>{{/link-to}}
+
+  <ul class="admin-form-object-list">
+    {{#each model.fields as |field|}}
+    <li class="admin-form-object-list-item">
+      <h3>{{field.name}}</h3>
+      <div {{action 'deleteField' field.id on='click' }} class ="list-item-button">Delete</div>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+</div>

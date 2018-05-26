@@ -124,6 +124,18 @@ public class UniversityController extends BaseController {
     }
 
     /**
+     * Gets university.
+     *
+     * @param programId the id
+     * @return the university
+     */
+    @RequestMapping(value = "/api/v1/getUniversityByProgram/{programId}",
+            method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity getUniversityByProgram(@PathVariable String programId) {
+        return wrapForPublic(() -> this.service.getUniversityByProgram(UUID.fromString(programId)));
+    }
+
+    /**
      * em
      * Gets nearby universities.
      *
