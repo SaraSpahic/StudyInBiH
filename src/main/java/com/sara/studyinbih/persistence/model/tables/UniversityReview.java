@@ -4,6 +4,7 @@ package com.sara.studyinbih.persistence.model.tables;
 import com.sara.studyinbih.persistence.model.BaseModel;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 /**
@@ -24,8 +25,30 @@ public class UniversityReview extends BaseModel {
 	@Column(name = "rating")
 	private Integer rating;
 
-	@Column(name = "review")
+	@Column(name = "review", columnDefinition="text")
 	private String review;
+
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "display_name")
+	private String displayName;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "years_participated")
+	private String yearsParticipated;
+
+	@ManyToOne
+	@JoinColumn(name = "program_id", referencedColumnName = "id")
+	private StudyProgram studyProgram;
+
+	@Column(name = "recommends")
+	private Boolean recommends;
+
+	@Column(name = "timestamp")
+	private Timestamp timestamp;
 
 	/**
 	 * Instantiates a new University review.
@@ -98,4 +121,60 @@ public class UniversityReview extends BaseModel {
 	 * @param review the review
 	 */
 	public void setReview(String review) { this.review = review; }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getYearsParticipated() {
+		return yearsParticipated;
+	}
+
+	public void setYearsParticipated(String yearsParticipated) {
+		this.yearsParticipated = yearsParticipated;
+	}
+
+	public StudyProgram getStudyProgram() {
+		return studyProgram;
+	}
+
+	public void setStudyProgram(StudyProgram studyProgram) {
+		this.studyProgram = studyProgram;
+	}
+
+	public Boolean getRecommends() {
+		return recommends;
+	}
+
+	public void setRecommends(Boolean recommends) {
+		this.recommends = recommends;
+	}
+
+	public Timestamp getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Timestamp timestamp) {
+		this.timestamp = timestamp;
+	}
 }

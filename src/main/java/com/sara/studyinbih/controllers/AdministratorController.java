@@ -26,7 +26,7 @@ public class AdministratorController extends BaseController {
     @Autowired
     private AdministratorService service;
 
-    private static final String IMAGE_ASSETS_DIRECTORY = "public/assets/images/";
+    private static final String IMAGE_ASSETS_DIRECTORY = "images/";
 
     @RequestMapping(value = "/api/v1/admin/deletePicture/{pictureId}", method = RequestMethod.GET, produces = "application/json")
     public ResponseEntity deletePicture(@PathVariable String pictureId, HttpSession session) {
@@ -37,6 +37,26 @@ public class AdministratorController extends BaseController {
     public ResponseEntity getAdministratorStatistics(HttpSession session) {
         return wrapForAdmin(() -> this.service.getAdministratorStatistics(), session);
     }
+
+    @RequestMapping(value = "/api/v1/admin/pictureUpload", method = RequestMethod.POST, produces="application/json")
+    public ResponseEntity pictureUpload(@RequestParam("file") MultipartFile picture,
+                                     @RequestParam("timestamp") String timestamp,
+                                        HttpSession session){
+        return wrapForAdmin(() -> {
+            if (picture != null && timestamp != null) {
+                String extension = FileNameUtils.getExtension(picture.getOriginalFilename());
+                String pathString= IMAGE_ASSETS_DIRECTORY + timestamp + "."+ extension;
+                byte[] bytes = picture.getBytes();
+                Files.write(Paths.get(pathString),bytes);
+                return "{ \"path\": \"" + "/images/"+ timestamp + "." +  extension+"\"}";
+            } else {
+                return "{ \"message\": \"" + "failed" + "\"}";
+            }},session);
+    }
+
+
+
+
 
 
 }

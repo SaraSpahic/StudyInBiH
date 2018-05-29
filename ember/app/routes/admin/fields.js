@@ -5,6 +5,12 @@ export default Ember.Route.extend({
   model() {
     return Ember.RSVP.hash({
       fields: this.get('ajax').request('/api/v1/getAllStudyFields'),
+
     });
+  },
+  actions: {
+    sessionChanged: function() {
+      this.refresh();
+    }
   },
 });

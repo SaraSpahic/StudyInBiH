@@ -37,9 +37,50 @@
       </ul>
     </div>
     <div id="gallery" class="tab-pane fade">
-
+      {{#each model.university.photos as |photo|}}
+      <div {{action 'showPhotoModal' photo.path on='click'}}>
+      <div class="col-md-3 admin-gallery" style = "padding:0px" data-toggle="modal" data-target="#galleryModal" data-id = "{{photo.path}}">
+              <img src = "{{photo.path}}"/>
+          </div>
+      </div>
+      {{/each}}
     </div>
     <div id="reviews" class="tab-pane fade">
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
+        Leave a review
+      </button>
+
+        {{#each model.universityReviews as |review|}}
+      <div class = "conainer-fluid" style="padding:10px">
+        <div class="review-block">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="review-block-name">{{review.displayName}}</div>
+              <div class="review-block-date">{{review.timestamp}}</div>
+            </div>
+            <div class="col-sm-9">
+              <div class="review-block-rate">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </div>
+              <div class="review-block-title">{{review.studyProgram.name}}</div>
+              <div class="review-block-description">{{review.review}}</div>
+              <div class = "review-recommend">
+                {{#if review.recommends}}
+                <div>{{review.displayName}} recommends this university for international students!</div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          </div>
+            </div>
+      {{/each}}
+
 
     </div>
     <div id="contact" class="tab-pane fade">
@@ -52,4 +93,111 @@
 </div>
 
 </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade container-fluid" id="galleryModal" tabindex="-1" role="dialog" aria-labelledby="galleryModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div >
+           <img src={{model.currentPhoto}} class="modal-photo"/>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Leave a review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="container-fluid">
+        <form {{action 'addReview' on='submit'}}>
+          <div class = "row">
+          <div class="form-group col-md-6">
+            <label for="inputFullName">Full name</label>
+            {{input id='inputFullName' class='form-control' placeholder='Name Surname' value=model.review.reviewerName}}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputDisplayName">Display name (optional)</label>
+            {{input id='inputDisplayName' class='form-control' aria-describedby="displayHelp"  placeholder='Display name' value=model.review.displayName}}
+            <small id="displayHelp" class="form-text text-muted">If you don't want to show your full name, you can choose another one.</small>
+          </div>
+        </div>
+          <div class="form-group">
+            <label for="inputEmail">Email address</label>
+            {{input id='inputEmail' type="email" class='form-control' aria-describedby="emailHelp"  placeholder='Enter email' value=model.review.email}}
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+            <div class = "row">
+          <div class="form-group col-md-6">
+            <label for="inputYears">When were you studying at this university? (Year)</label>
+            {{input id='inputYears' class='form-control'  placeholder='Years From-To' value=model.review.yearsParticipated}}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputYears">What program were you participating in?</label>
+            <select class="select" id = "select-program" onchange={{action "selectProgram" value="target.value"}}>
+              <option selected>Select program</option>
+              {{#each model.programs as |program|}}
+                <option value = {{program.id}}>{{program.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Review</label>
+            {{textarea class="form-control" id="message-text" placeholder="What do you think about this university? Were you satisfied with the academics, support and fun you had?" value = model.review.reviewText}}
+          </div>
+
+          <div class = "form-group">
+              <label for="inputStarRating">How would you rate your overall experience at this university?</label>
+                <select class="select" id = "select-rating" onchange={{action "selectRating" value="target.value"}}>
+                  <option selected>Select rating</option>
+                  <option value="1">1 star (bad)</option>
+                  <option value="2">2 stars</option>
+                  <option value="3">3 stars</option>
+                  <option value="4">4 stars</option>
+                  <option value="5">5 stars (excellent)</option>
+                </select>
+          </div>
+
+          <div class = "form-group">
+              <label for="inputRecommendations">Would you receommend this university for international students?</label>
+              <select class="select" id = "select-recommend" onchange={{action "selectRecommend" value="target.value"}}>
+                  <option selected>Select</option>
+                <option value = "true">Yes</option>
+                <option value = "false">No</option>
+              </select>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">I agree to Terms and Conditions</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </form>
+      </div>
+    </div>
+      <div class="modal-footer">
+        Thank you for leaving your review!
+      </div>
+    </div>
+  </div>
 </div>

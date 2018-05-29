@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -176,9 +177,9 @@ public class UniversityController extends BaseController {
      * @return the result
      */
     @RequestMapping(value = "/api/v1/postReview", method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity postReview(@RequestBody ReviewForm reviewForm, HttpSession session) {
-        return wrapForUser(() -> this.service
-                .postReview(reviewForm, this.userCache.get((String) session.getAttribute("uid"))), session);
+    public ResponseEntity postReview(@RequestBody ReviewForm reviewForm) {
+        return wrapForPublic(() -> this.service
+                .postReview(reviewForm));
     }
 
     /**
@@ -215,5 +216,36 @@ public class UniversityController extends BaseController {
     public ResponseEntity getStudyProgramsByUniversity(@PathVariable String universityId) {
         return wrapForPublic(() -> this.service.getStudyPrograms(UUID.fromString(universityId)));
     }
+
+    /**
+     * Gets study programs by university.
+     *
+     * @param universityId the id
+     * @return the university
+     */
+    @RequestMapping(value = "/api/v1/getReviews/{universityId}",
+            method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity getUniversityReviews(@PathVariable String universityId) {
+        return wrapForPublic(() -> this.service.getUniversityReviews(UUID.fromString(universityId)));
+    }
+
+    /**
+     * Update pictures result.
+     *
+     * @return the result
+     */
+    @RequestMapping(value = "/api/v1/admin/updatePictures",
+            method = RequestMethod.PATCH, produces="application/json")
+    public ResponseEntity updatePictures(@RequestBody List<ImageUploadForm> imageUploadForms,HttpSession session) {
+        return wrapForAdmin(() -> this.service.
+                updatePictures(imageUploadForms),session);
+    }
+
+    @RequestMapping(value = "/api/v1/admin/deletePhoto/{photoId}",
+            method = RequestMethod.DELETE, produces = "application/json")
+    public ResponseEntity deleteUniversityPhoto(@PathVariable String photoId, HttpSession session) {
+        return wrapForAdmin(() -> this.service.deletePhoto(UUID.fromString(photoId)), session);
+    }
+
 
 }

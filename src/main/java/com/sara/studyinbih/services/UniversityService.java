@@ -6,7 +6,10 @@ import com.sara.studyinbih.persistence.model.helpers.PopularUniversitiesBean;
 import com.sara.studyinbih.persistence.model.helpers.UniversityFilter;
 import com.sara.studyinbih.persistence.model.helpers.forms.ImageUploadForm;
 import com.sara.studyinbih.persistence.model.helpers.forms.ReviewForm;
-import com.sara.studyinbih.persistence.model.tables.*;
+import com.sara.studyinbih.persistence.model.tables.StudyProgram;
+import com.sara.studyinbih.persistence.model.tables.University;
+import com.sara.studyinbih.persistence.model.tables.UniversityPhoto;
+import com.sara.studyinbih.persistence.model.tables.UniversityReview;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.*;
 import org.hibernate.transform.Transformers;
@@ -23,7 +26,7 @@ import java.util.stream.Collectors;
 @Service
 public class UniversityService extends BaseService {
 
-    private static final String BASE_PATH = "http://localhost:8080/assets/images/";
+    private static final String BASE_PATH = "http://localhost:8080/images/";
     private static final String ORDER_KEY = "name";
 
     /**
@@ -52,6 +55,7 @@ public class UniversityService extends BaseService {
 
         return (List<University>) getSession().createCriteria(University.class)
                 .addOrder(Order.asc(ORDER_KEY))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                 .list();
     }
 
@@ -172,8 +176,7 @@ public class UniversityService extends BaseService {
     @SuppressWarnings("unchecked")
     public List<University> getPopularUniversities() {
 
-        List<PopularUniversitiesBean> popularUniversitiesBeans = getSession().createCriteria(Request.class, "request")
-                .createAlias("request.studyProgram", "studyProgram")
+        List<PopularUniversitiesBean> popularUniversitiesBeans = getSession().createCriteria(StudyProgram.class)
                 .setProjection(Projections.projectionList()
                         .add(Projections.groupProperty("studyProgram.universityId").as("universityId"))
                         .add(Projections.count("studyProgram").as("studyProgramCount")))
@@ -215,27 +218,18 @@ public class UniversityService extends BaseService {
      * Post review boolean.
      *
      * @param reviewForm the review form
-     * @param user       the user
      */
-    public Boolean postReview(final ReviewForm reviewForm, final User user) {
-        UniversityReview universityReview = (UniversityReview) getSession().createCriteria(UniversityReview.class)
-                .add(Restrictions.eq("universityId", reviewForm.getUniversityId()))
-                .add(Restrictions.eq("userId", user.getId()))
+    public Boolean postReview(final ReviewForm reviewForm) {
+        StudyProgram studyProgram = (StudyProgram) getSession()
+                .createCriteria(StudyProgram.class)
+                .add(Restrictions.eq("id", reviewForm.getStudyProgram()))
                 .uniqueResult();
-        if (universityReview == null) {
-            universityReview = new UniversityReview(
-                    reviewForm.getUniversityId(),
-                    user.getId(),
-                    reviewForm.getReviewScore(),
-                    reviewForm.getReviewText()
-            );
-        } else {
-            universityReview.setReview(reviewForm.getReviewText());
-            universityReview.setRating(reviewForm.getReviewScore());
-        }
 
+        UniversityReview universityReview = reviewForm.createReview(studyProgram);
         getSession().save(universityReview);
-        updateStarRating(reviewForm.getUniversityId());
+        if (reviewForm.getReviewScore() != null) {
+            updateStarRating(reviewForm.getUniversityId());
+        }
         return true;
     }
 
@@ -283,16 +277,14 @@ public class UniversityService extends BaseService {
                 .add(Restrictions.eq("id", imageUploadForm.getEntityId()))
                 .uniqueResult();
 
-        String newImagePath = BASE_PATH + imageUploadForm.getEntityId() + "-";
+        String newImagePath = BASE_PATH + imageUploadForm.getTimestamp();
+        newImagePath += "." + imageUploadForm.getExtension();
         if (imageUploadForm.getImageType().equals("profile")) {
             university.setProfileImagePath(newImagePath);
-            newImagePath += imageUploadForm.getImageType() + "." + imageUploadForm.getExtension();
         } else if (imageUploadForm.getImageType().equals("cover")) {
             university.setCoverImagePath(newImagePath);
-            newImagePath += imageUploadForm.getImageType() + "." + imageUploadForm.getExtension();
         } else {
-            newImagePath += imageUploadForm.getTimestamp() + "." + imageUploadForm.getExtension();
-            ;
+
             UniversityPhoto newPhoto = new UniversityPhoto();
             newPhoto.setUniversityId(imageUploadForm.getEntityId());
             newPhoto.setPath(newImagePath);
@@ -309,7 +301,7 @@ public class UniversityService extends BaseService {
 
     public List<StudyProgram> getStudyPrograms(UUID id) {
         Criteria criteria = getSession().createCriteria(StudyProgram.class)
-                .add(Restrictions.eq("universityId", id));
+                .add(Restrictions.eq("universityId", id)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
 
     }
@@ -323,4 +315,36 @@ public class UniversityService extends BaseService {
         return getUniversityWithId(universityId);
 
     }
+
+    public List<UniversityReview> getUniversityReviews(UUID universityId) {
+        Criteria criteria = getSession().createCriteria(UniversityReview.class)
+                .add(Restrictions.eq("universityId", universityId)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return criteria.list();
+
+    }
+
+
+    /**
+     * Update pictures string.
+     *
+     * @param imageUploadForms the image upload forms
+     * @return the string
+     * @throws Exception the exception
+     */
+    public String updatePictures(final List<ImageUploadForm> imageUploadForms) throws Exception {
+        for(ImageUploadForm imageUploadForm : imageUploadForms){
+            updatePicture(imageUploadForm);
+        }
+        return "{}";
+    }
+
+    public Boolean deletePhoto(final UUID id) throws Exception {
+        UniversityPhoto universityPhoto = (UniversityPhoto) getSession().createCriteria(UniversityPhoto.class)
+                .add(Restrictions.eq("id", id))
+                .uniqueResult();
+
+        getSession().delete(universityPhoto);
+        return true;
+    }
+
 }

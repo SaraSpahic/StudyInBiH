@@ -13,7 +13,7 @@ import java.util.UUID;
  * The type University studyProgram.
  */
 @Entity
-@Table(name = "university_studyProgram")
+@Table(name = "studyProgram")
 public class StudyProgram extends BaseModel {
 
     @Id

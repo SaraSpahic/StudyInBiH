@@ -184,9 +184,44 @@ padding-top: 10%;
       UNIVERSITY
 \*-----------------------------------------------------------------------------*/
 
+.modal-photo {
+    max-width: 100%;
+    max-height: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   object-fit: contain;
 
+}
 
-
+.review-block{
+	background-color:#FAFAFA;
+	border:1px solid #EFEFEF;
+	padding:15px;
+	border-radius:3px;
+	margin-bottom:15px;
+  width: 80%;
+  margin: auto;
+}
+.review-block-name{
+	font-size:20px;
+	margin:10px 0;
+}
+.review-block-date{
+	font-size:15px;
+}
+.review-block-rate{
+	font-size:15px;
+	margin-bottom:15px;
+}
+.review-block-title{
+	font-size:20px;
+	font-weight:700;
+	margin-bottom:10px;
+}
+.review-block-description{
+	font-size:15px;
+}
 /*-----------------------------------------------------------------------------*\
       STUDY
 \*-----------------------------------------------------------------------------*/
@@ -448,6 +483,21 @@ padding-top: 10%;
   top:25px;
 }
 
+.admin-gallery > img {
+  width:100%;
+  object-fit: cover;
+  overflow: hidden;
+  height: 200px;
+  padding: 15px;
+}
+
+.admin-gallery > button {
+  position: absolute;
+  top:15px;
+  right:20px;
+  font-size: 50px;
+  opacity: 0.5;
+}
 
 /*-----------------------------------------------------------------------------*\
   LOGIN
