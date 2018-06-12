@@ -7,8 +7,12 @@ const {
 } = Ember;
 
 export default Ember.Controller.extend({
+
   ajax: service('ajax'),
   actions:{
+
+    
+
     addReview() {
       this.set('model.review.universityId', this.get('model.university.id'));
       let jsonData = JSON.stringify(this.get('model.review'));

@@ -28,6 +28,7 @@ public class UniversityService extends BaseService {
 
     private static final String BASE_PATH = "http://localhost:8080/images/";
     private static final String ORDER_KEY = "name";
+    private static final String ORDER_KEY_REVIEWS = "timestamp";
 
     /**
      * Create university boolean.
@@ -301,7 +302,8 @@ public class UniversityService extends BaseService {
 
     public List<StudyProgram> getStudyPrograms(UUID id) {
         Criteria criteria = getSession().createCriteria(StudyProgram.class)
-                .add(Restrictions.eq("universityId", id)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                .add(Restrictions.eq("universityId", id))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
 
     }
@@ -318,7 +320,9 @@ public class UniversityService extends BaseService {
 
     public List<UniversityReview> getUniversityReviews(UUID universityId) {
         Criteria criteria = getSession().createCriteria(UniversityReview.class)
-                .add(Restrictions.eq("universityId", universityId)).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                .add(Restrictions.eq("universityId", universityId))
+                .addOrder(Order.desc(ORDER_KEY_REVIEWS))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return criteria.list();
 
     }

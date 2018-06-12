@@ -1,9 +1,14 @@
 {{admin/admin-navigation}}
 
+
+<div class = "admin-title">
+<br/>
+<h2> Manage Study Fields</h2>
+{{#link-to 'admin.fields-add'}}<button>Add new study field</button>{{/link-to}}
+</div>
+
 <div class = "container-general">
 <div class="admin-form">
-  <h1 class="admin-from-title">All Study Fields</h1>
-  {{#link-to 'admin.fields-add'}}<button type="button" class = "admin-from-new-button">Add new study Field</button>{{/link-to}}
 
   <ul class="admin-form-object-list">
     {{#each model.fields as |field|}}

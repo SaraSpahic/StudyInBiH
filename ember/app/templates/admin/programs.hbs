@@ -1,1 +1,16 @@
-{{outlet}}
+{{admin/admin-navigation}}
+
+<div class = "admin-title">
+  <br/>
+<h2>Manage Study Programs</h2>
+</div>
+
+{{#each model.programs as |program|}}
+
+{{#program-card one_program = program}}
+
+<br/>
+{{#link-to 'admin.program-edit' program.id program.universityId}}<button>Edit</button>{{/link-to}}
+
+{{/program-card}}
+{{/each}}

@@ -1,1 +1,30 @@
-{{outlet}}
+{{admin/admin-navigation}}
+
+
+<div class = "admin-title">
+  <br/>
+  <h2> Manage blog articles</h2>
+{{#link-to 'admin.blog-add'}}<button>Add new post</button>{{/link-to}}
+</div>
+
+{{#each model.posts as |post|}}
+
+<div class = "container-general">
+  {{#link-to 'admin.blog-edit' post.id}}
+  <div class = "top-photo">
+    <img src= "{{post.photo}}">
+  </div>
+{{/link-to}}
+<div class="container">
+<h1>{{post.title}}</h1>
+<div class = "delete-icon"  {{action 'deletePost' post.id on='click'}}>
+    <i class="fa fa-trash fa-3x" aria-hidden="true"></i>
+</div>
+    <div id="about" class="tab-pane fade in active">
+      <h3>{{post.subtitle}}</h3>
+      <p>{{post.contents}}</p>
+    </div>
+
+  </div>
+</div>
+{{/each}}

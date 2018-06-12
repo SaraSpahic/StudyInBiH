@@ -25,10 +25,16 @@ Router.map(function() {
     this.route('program-add',  { path: 'program-add/:university_id' });
     this.route('fields-add');
     this.route('program-edit', { path: 'program-edit/:program_id/:university_id' });
+    this.route('blog-add');
+    this.route('admission');
+    this.route('blog-edit',{ path: 'blog-edit/:blog_id' });
+    this.route('logout');
   });
   this.route('city',{ path: 'city/:city_id' });
   this.route('program', { path: 'program/:program_id' });
   this.route('universities');
+  this.route('admission');
+  this.route('search-results');
 });
 
 export default Router;

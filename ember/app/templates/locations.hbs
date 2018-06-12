@@ -9,7 +9,7 @@
 {{#each model.locations as |location|}}
 {{log 'id is:' location.id}}
 {{#link-to 'city' location.id}}
-{{#location-view title = location.name image = location.imageUrl description = location.description}}{{/location-view}}
+{{#location-view title = location.name image = location.imageUrl description = location.about}}{{/location-view}}
 {{/link-to}}
 
 {{/each}}

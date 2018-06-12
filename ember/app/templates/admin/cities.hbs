@@ -1,5 +1,11 @@
 {{admin/admin-navigation}}
-<h2> Admin cities </h2>
+
+
+<div class = "admin-title">
+<br/>
+<h2> Manage Cities</h2>
+{{#link-to 'admin.city-add'}}<button>Add new city</button>{{/link-to}}
+</div>
 
 {{#each model.cities as |city|}}
   {{#location-view title = city.name description=city.about image = city.imageUrl}}
@@ -7,5 +13,3 @@
   {{#link-to 'admin.city-edit' city.id}}<button>Edit</button>{{/link-to}}
   {{/location-view}}
 {{/each}}
-
-{{#link-to 'admin.city-add'}}<button>Add new city</button>{{/link-to}}

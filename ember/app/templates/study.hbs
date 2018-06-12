@@ -7,23 +7,44 @@
 
 <div id = "program-finder">
   <form class="program-form">
-               <select id="select-level" {{action 'setLevel' on='change' }}>
-                 <option value=1>Bachelor</option>
-                 <option value=2>Master</option>
-                 <option value=3>PhD</option>
-                <option value=3>All levels</option>
+               <select id="select-degree" {{action 'setDegree' on='change' }}>
+                 <option value="">All levels</option>
+                 <option value=BACHELOR>Bachelor</option>
+                 <option value=MASTER>Master</option>
+                 <option value=PHD>PhD</option>
                </select>
-               <select id="select-level" {{action 'setLanguage' on='change' }}>
-                 <option value=1>English</option>
-                 <option value=2>Bosnian</option>
-                <option value=3>All languages</option>
+               <select id="select-language" {{action 'setLanguage' on='change' }}>
+                 <option value="">All languages</option>
+                 <option value=ENGLISH>English</option>
+                 <option value=BOSNIAN>Bosnian</option>
                </select>
-               <input type = "text" name = "study-field" placeholder="Study field"/>
-               <button type="submit" class="program-form-button">Find Program</button>
-             </form>
+               <select id="select-field" {{action 'setField' on='change' }}>
+                 <option value = "">Any field</option>
+                {{#each model.fields as |field|}}
+                <option value = {{field.id}}>{{field.name}}</option>
+                {{/each}}
+               </select>
+               <button class="program-form-button">Find Program</button>
+  </form>
 
 </div>
 </div>
+
+{{#each model.response as |program|}}
+{{#link-to 'program' program.id}}
+{{program-card one_program = program}}
+{{/link-to}}
+
+{{else}}
+<div class = "no-results">
+Sorry, that filter combination has no results.
+<br/>
+Please try different criteria.
+</div>
+{{/each}}
+
+
+
 
 </div>
 

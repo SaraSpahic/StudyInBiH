@@ -1,5 +1,10 @@
 {{admin/admin-navigation}}
-<h2> Manage Universities </h2>
+
+<div class = "admin-title">
+<br/>
+<h2> Manage Universities</h2>
+{{#link-to 'admin.university-add'}}<button>Add new university</button>{{/link-to}}
+</div>
 
 {{#each model.universities as |university|}}
 <div class = "container-general">
@@ -18,5 +23,3 @@
 </div>
 </div>
 {{/each}}
-
-{{#link-to 'admin.university-add'}}<button>Add new university</button>{{/link-to}}

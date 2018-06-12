@@ -1,14 +1,12 @@
 package com.sara.studyinbih.controllers;
 
+import com.sara.studyinbih.persistence.model.helpers.StudyProgramFilter;
 import com.sara.studyinbih.persistence.model.tables.StudyProgram;
 import com.sara.studyinbih.services.StudyProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
@@ -65,6 +63,28 @@ public class StudyProgramController extends BaseController {
     public ResponseEntity getAllStudyPrograms() {
         return wrapForPublic(() -> this.service.getAllStudyPrograms());
     }
+
+    /**
+     * Gets all studyPrograms.
+     *
+     * @return the all studyPrograms
+     */
+    @RequestMapping(value = "/api/v1/findStudyPrograms", method = RequestMethod.GET, produces = "application/json")
+    public ResponseEntity findStudyPrograms(
+            @RequestParam(name="degree",required = false) String degree,
+            @RequestParam(name="language",required = false) String language,
+            @RequestParam(name="studyField",required = false) String studyField
+    ) {
+
+        return wrapForPublic(() -> this.service.findStudyProgramsWithFilter(
+                StudyProgramFilter.createFilter()
+                .setLanguage(language)
+                .setDegreeLevel(degree)
+                .setStudyField(studyField)
+
+        ));
+    }
+
 
 
 }

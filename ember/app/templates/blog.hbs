@@ -1,2 +1,26 @@
-{{navigation-wrapper}}
 {{outlet}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{{navigation-wrapper}}
+<div class = "page-main">
+
+
+{{#each model.posts as |post|}}
+<div class = "container-general">
+  <div class = "top-photo">
+    <img src= "{{post.photo}}">
+  </div>
+
+<div class="container">
+<h1>{{post.title}}</h1>
+
+    <div id="about" class="tab-pane fade in active">
+      <h3>{{post.subtitle}}</h3>
+      <p>{{post.contents}}</p>
+    </div>
+
+  </div>
+</div>
+
+{{/each}}
+</div>

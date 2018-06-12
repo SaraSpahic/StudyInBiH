@@ -10,7 +10,22 @@
   </div>
 
 <div class="container">
-<h1>{{model.university.name}}</h1>
+  <div class = "row">
+    <div class = "col-md-9">
+      <h1>{{model.university.name}}</h1>
+    </div>
+    <div class = "col-md-3">
+      <div class = "rating-average">
+      <h1 class="rating-num">
+          {{round model.university.averageRating decimals = 2}}
+      <i class = "fa fa-star"></i>
+        </h1>
+        <div>
+    <span class="glyphicon glyphicon-user"></span> {{model.university.numberOfRatings}} reviews
+  </div>
+</div>
+</div>
+</div>
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#about">About</a></li>
     <li><a data-toggle="tab" href="#programs">Programs</a></li>
@@ -21,17 +36,22 @@
 
   <div class="tab-content">
     <div id="about" class="tab-pane fade in active">
-      <h3>Learn more about {{model.university.name}}</h3>
+
+<div class = "row">
+  <div class = "col-md-3">
       <img src =  "{{model.university.profileImagePath}}">
+    </div>
+    <div class = "col-md-9">
       <p>{{model.university.description}}</p>
     </div>
+    </div>
+  </div>
     <div id="programs" class="tab-pane fade">
       <h3>Study programs offered at {{model.university.name}}</h3>
-      <p>List of programs</p>
       <ul>
           {{#each model.programs as |program|}}
           {{#link-to 'program' program.id}}
-            <li>{{program.name}}</li>
+            <li>{{program.name}}, {{program.degreeLevel}}</li>
             {{/link-to}}
           {{/each}}
       </ul>
@@ -45,43 +65,55 @@
       </div>
       {{/each}}
     </div>
+
     <div id="reviews" class="tab-pane fade">
-
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reviewModal">
-        Leave a review
-      </button>
-
-        {{#each model.universityReviews as |review|}}
       <div class = "conainer-fluid" style="padding:10px">
+
+      <div class="row">
+    				<div class="rating-block">
+
+            <!-- Button trigger modal -->
+            <div>
+              Have you studied at {{model.university.name}}? If yes, feel free to
+              <button type="button" class="btn btn-light" data-toggle="modal" data-target="#reviewModal">
+                Leave a review
+              </button>
+          </div>
+          </div>
+        </div>
+        {{#each model.universityReviews as |review|}}
         <div class="review-block">
           <div class="row">
             <div class="col-sm-3">
+              <div class="review-block-rate">
+                <p class = "university-tile-rating">
+                    {{star-score rating=review.rating}}
+                </p>
+              </div>
               <div class="review-block-name">{{review.displayName}}</div>
-              <div class="review-block-date">{{review.timestamp}}</div>
+              <div class="review-block-date">{{millis-to-date review.timestamp}}</div>
             </div>
             <div class="col-sm-9">
-              <div class="review-block-rate">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-                <i class="fa fa-star" aria-hidden="true"></i>
-              </div>
               <div class="review-block-title">{{review.studyProgram.name}}</div>
               <div class="review-block-description">{{review.review}}</div>
-              <div class = "review-recommend">
-                {{#if review.recommends}}
-                <div>{{review.displayName}} recommends this university for international students!</div>
-                {{/if}}
-              </div>
+
             </div>
           </div>
-          </div>
+          <div class = "row">
+            <div class = "review-recommend">
+              {{#if review.recommends}}
+                <i class="fa fa-check-circle-o"></i>
+                 recommends university for international students
+              {{/if}}
             </div>
+          </div>
+
+          </div>
+
+
       {{/each}}
 
-
+    </div>
     </div>
     <div id="contact" class="tab-pane fade">
       Address: {{model.university.address}} <br/>
