@@ -27,7 +27,7 @@ define('studyinbih/tests/app.lint-test', [], function () {
 
   QUnit.test('components/file-upload.js', function (assert) {
     assert.expect(1);
-    assert.ok(false, 'components/file-upload.js should pass ESLint\n\n25:11 - Unexpected console statement. (no-console)\n26:11 - Unexpected console statement. (no-console)\n27:11 - Unexpected console statement. (no-console)');
+    assert.ok(false, 'components/file-upload.js should pass ESLint\n\n27:5 - Unexpected console statement. (no-console)\n31:11 - Unexpected console statement. (no-console)\n32:11 - Unexpected console statement. (no-console)\n33:11 - Unexpected console statement. (no-console)');
   });
 
   QUnit.test('components/location-view.js', function (assert) {
